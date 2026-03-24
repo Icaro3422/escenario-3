@@ -3,12 +3,29 @@
  */
 package escenario;
 
+import java.util.Scanner;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    public static int siglo(int anho) {
+        return (anho - 1) / 100 + 1;
+    }
+
+    public static int primer_anho(int siglo) {
+        return (siglo - 1) * 100 + 1;
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese un año: ");
+        int anho = scanner.nextInt();
+
+        int siglo = siglo(anho);
+        int primerAnho = primer_anho(siglo);
+
+        System.out.println("El año " + anho + " pertenece al siglo " + siglo);
+        System.out.println("El primer año de ese siglo es: " + primerAnho);
+
+        scanner.close();
     }
 }
