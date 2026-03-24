@@ -3,12 +3,17 @@
  */
 package escenario;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    @Test void sigloTest() {
+        assertEquals(1, App.siglo(100));
+        assertEquals(2, App.siglo(120));
+    }
+
+    @Test void primerAnhoTest() {
+        assertEquals(1, App.primer_anho(1));
+        assertEquals(101, App.primer_anho(2));
     }
 }
