@@ -41,37 +41,49 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
 
-        System.out.println("=== MENU ===");
-        System.out.println("1. Consultar año en siglos");
-        System.out.println("2. Convertir moneda");
-        System.out.println("3. Conversión de medidas de longitud");
-        System.out.print("Elija una opción (1, 2 o 3): ");
-        int opcion = scanner.nextInt();
+        while (!salir) {
+            System.out.println("\n=== MENU ===");
+            System.out.println("1. Consultar año en siglos");
+            System.out.println("2. Convertir moneda");
+            System.out.println("3. Conversión de medidas de longitud");
+            System.out.println("4. Salir");
+            System.out.print("Elija una opción (1, 2, 3 o 4): ");
+            int opcion = scanner.nextInt();
 
-        if (opcion == 1) {
-            System.out.print("Ingrese un año: ");
-            int anho = scanner.nextInt();
-            int siglo = siglo(anho);
-            int primerAnho = primer_anho(siglo);
-            System.out.println("El año " + anho + " pertenece al siglo " + siglo);
-            System.out.println("El primer año de ese siglo es: " + primerAnho);
-        } else if (opcion == 2) {
-            System.out.print("Ingrese la cantidad en moneda local (en pesos): ");
-            double monedaLocal = scanner.nextDouble();
-            double euros = conversionALas8AM(monedaLocal);
-            System.out.println("Equivalente en euros a las 8:00 AM: " + String.format("%.2f", euros, "€"));
-            double eurosMedioDia = conversionAlMedioDia(monedaLocal);
-            System.out.println("Equivalente en euros a las 12:00 PM: " + String.format("%.2f", eurosMedioDia, "€"));
-        } else if (opcion == 3) {
-            System.out.print("Ingrese el número de metros: ");
-            double metros = scanner.nextDouble();
-            System.out.println(metros + " metros equivalen a:");
-            System.out.println("  - " + String.format("%.2f", metrosAPies(metros)) + " pies");
-            System.out.println("  - " + String.format("%.2f", metrosAPulgadas(metros)) + " pulgadas");
-            System.out.println("  - " + String.format("%.2f", metrosACentimetros(metros)) + " centímetros");
-        } else {
-            System.out.println("Opción no válida.");
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese un año: ");
+                    int anho = scanner.nextInt();
+                    int siglo = siglo(anho);
+                    int primerAnho = primer_anho(siglo);
+                    System.out.println("El año " + anho + " pertenece al siglo " + siglo);
+                    System.out.println("El primer año de ese siglo es: " + primerAnho);
+                    break;
+                case 2:
+                    System.out.print("Ingrese la cantidad en moneda local (en pesos): ");
+                    double monedaLocal = scanner.nextDouble();
+                    double euros = conversionALas8AM(monedaLocal);
+                    System.out.println("Equivalente en euros a las 8:00 AM: " + String.format("%.2f", euros, "€"));
+                    double eurosMedioDia = conversionAlMedioDia(monedaLocal);
+                    System.out.println("Equivalente en euros a las 12:00 PM: " + String.format("%.2f", eurosMedioDia, "€"));
+                    break;
+                case 3:
+                    System.out.print("Ingrese el número de metros: ");
+                    double metros = scanner.nextDouble();
+                    System.out.println(metros + " metros equivalen a:");
+                    System.out.println("  - " + String.format("%.2f", metrosAPies(metros)) + " pies");
+                    System.out.println("  - " + String.format("%.2f", metrosAPulgadas(metros)) + " pulgadas");
+                    System.out.println("  - " + String.format("%.2f", metrosACentimetros(metros)) + " centímetros");
+                    break;
+                case 4:
+                    salir = true;
+                    System.out.println("Hasta luego.");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+            }
         }
 
         scanner.close();
