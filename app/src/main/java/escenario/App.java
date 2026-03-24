@@ -6,6 +6,10 @@ package escenario;
 import java.util.Scanner;
 
 public class App {
+    // El ratio cambiaro se de actualizar diariamente, para efectos prácticos del ejercicio asumimos un valor constante
+    public final static  double RATIO_EUROPA = 4253.40;
+    public final static double DESCUENTO_MEDIO_DIA = 0.1;
+
     public static int siglo(int anho) {
         return (anho - 1) / 100 + 1;
     }
@@ -14,17 +18,41 @@ public class App {
         return (siglo - 1) * 100 + 1;
     }
 
+    public static double conversionALas8AM(double monedaLocalP) {
+        return monedaLocalP / RATIO_EUROPA;
+    }
+
+    public static double conversionAlMedioDia(double monedaLocalP) {
+        double ratioConDescuento = RATIO_EUROPA - (RATIO_EUROPA * DESCUENTO_MEDIO_DIA);
+        return monedaLocalP / ratioConDescuento;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese un año: ");
-        int anho = scanner.nextInt();
+        System.out.println("=== MENU ===");
+        System.out.println("1. Consultar año en siglos");
+        System.out.println("2. Convertir moneda");
+        System.out.print("Elija una opción (1 o 2): ");
+        int opcion = scanner.nextInt();
 
-        int siglo = siglo(anho);
-        int primerAnho = primer_anho(siglo);
-
-        System.out.println("El año " + anho + " pertenece al siglo " + siglo);
-        System.out.println("El primer año de ese siglo es: " + primerAnho);
+        if (opcion == 1) {
+            System.out.print("Ingrese un año: ");
+            int anho = scanner.nextInt();
+            int siglo = siglo(anho);
+            int primerAnho = primer_anho(siglo);
+            System.out.println("El año " + anho + " pertenece al siglo " + siglo);
+            System.out.println("El primer año de ese siglo es: " + primerAnho);
+        } else if (opcion == 2) {
+            System.out.print("Ingrese la cantidad en moneda local (en pesos): ");
+            double monedaLocal = scanner.nextDouble();
+            double euros = conversionALas8AM(monedaLocal);
+            System.out.println("Equivalente en euros a las 8:00 AM: " + String.format("%.2f", euros, "€"));
+            double eurosMedioDia = conversionAlMedioDia(monedaLocal);
+            System.out.println("Equivalente en euros a las 12:00 PM: " + String.format("%.2f", eurosMedioDia, "€"));
+        } else {
+            System.out.println("Opción no válida.");
+        }
 
         scanner.close();
     }
