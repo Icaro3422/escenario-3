@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class App {
     // El ratio cambiaro se de actualizar diariamente, para efectos prácticos del ejercicio asumimos un valor constante
-    public final static  double RATIO_EUROPA = 4253.40;
+    public final static double RATIO_EUROPA = 4253.40;
     public final static double DESCUENTO_MEDIO_DIA = 0.1;
 
     public static int siglo(int anho) {
@@ -65,9 +65,9 @@ public class App {
                     System.out.print("Ingrese la cantidad en moneda local (en pesos): ");
                     double monedaLocal = scanner.nextDouble();
                     double euros = conversionALas8AM(monedaLocal);
-                    System.out.println("Equivalente en euros a las 8:00 AM: " + String.format("%.2f", euros, "€"));
+                    System.out.println("Equivalente en euros a las 8:00 AM: " + String.format("%.2f €", euros));
                     double eurosMedioDia = conversionAlMedioDia(monedaLocal);
-                    System.out.println("Equivalente en euros a las 12:00 PM: " + String.format("%.2f", eurosMedioDia, "€"));
+                    System.out.println("Equivalente en euros a las 12:00 PM: " + String.format("%.2f €", eurosMedioDia));
                     break;
                 case 3:
                     System.out.print("Ingrese el número de metros: ");
